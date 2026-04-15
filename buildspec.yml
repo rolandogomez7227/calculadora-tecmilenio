@@ -1,0 +1,19 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo Instalando dependencias...
+  build:
+    commands:
+      - echo Construyendo Docker...
+      - docker build -t calculadora-app .
+      - echo Generando registro en backup.log...
+      - date >> backup.log
+      - echo "Cambio realizado en el Pipeline" >> backup.log
+  post_build:
+    commands:
+      - echo Subiendo backup al S3...
+      - aws s3 cp backup.log s3://TU-NOMBRE-DE-BUCKET/
+artifacts:
+  files:
+    - '**/*'
