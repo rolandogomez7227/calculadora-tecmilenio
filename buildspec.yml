@@ -13,7 +13,7 @@ phases:
   post_build:
     commands:
       - echo Subiendo backup al S3...
-      - aws s3 ls s3://calculadora-tecmilenio/
+      - aws s3 ls s3://calculadora-tecmilenio/backup.log
 artifacts:
   files:
     - '**/*'
